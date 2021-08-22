@@ -15,7 +15,11 @@
     </v-toolbar>
 
     <v-container class="px-6">
-      <div class="weather-wrapper" v-dragscroll.x="true">
+      <div
+        class="weather-wrapper"
+        v-dragscroll.x="true"
+        v-if="weathers != null"
+      >
         <div class="weather-container">
           <div v-for="(weather, i) in weathers" :key="`weather-${i}`">
             <WeatherCard
@@ -24,6 +28,11 @@
             ></WeatherCard>
           </div>
         </div>
+      </div>
+      <div v-else class="text-center">
+        <v-btn @click="getLocation" light depressed
+          >Allow Location Permission</v-btn
+        >
       </div>
 
       <div class="subheader mb-3 mt-6">News</div>
@@ -104,5 +113,25 @@ export default {
       },
     ],
   }),
+
+  methods: {
+    showPosition(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      this.$store.dispatch("getWeather", { lat: lat, lon: lon });
+    },
+
+    getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((data) => {
+          this.showPosition(data);
+        });
+      }
+    },
+  },
+
+  mounted() {
+    this.getLocation();
+  },
 };
 </script>

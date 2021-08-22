@@ -5,7 +5,6 @@
     min-width="324"
     flat
     class="pa-2"
-    @click="coba"
     :ripple="false"
   >
     <div class="d-flex align-center pt-3">
@@ -120,10 +119,6 @@ export default {
   methods: {
     toggleTemp() {
       this.temp = this.temp == "c" ? "f" : "c";
-    },
-
-    coba() {
-      console.log("uwu");
     },
   },
 };
