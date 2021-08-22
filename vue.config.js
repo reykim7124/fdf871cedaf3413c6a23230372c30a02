@@ -7,8 +7,5 @@ module.exports = {
       },
     },
   },
-  publicPath:
-    process.env.NODE_ENV === "production"
-      ? "/fdf871cedaf3413c6a23230372c30a02/"
-      : "/",
+  publicPath: process.env.NODE_ENV === "production" ? "/gerimis/" : "/",
 };
