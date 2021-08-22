@@ -23,3 +23,27 @@ body
     .v-card
       border-radius: $borderRadius
 </style>
+
+<script>
+export default {
+  methods: {
+    showPosition(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      this.$store.dispatch("getWeather", { lat: lat, lon: lon });
+    },
+
+    getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((data) => {
+          this.showPosition(data);
+        });
+      }
+    },
+  },
+
+  mounted() {
+    this.getLocation();
+  },
+};
+</script>

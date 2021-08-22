@@ -5,9 +5,9 @@
         <v-icon>mdi-menu</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
-      <v-toolbar-title class="toolbar__title"
-        >Kec. Cimahi Tengah</v-toolbar-title
-      >
+      <v-toolbar-title class="toolbar__title" v-if="weathers != null">{{
+        weathers[0].name
+      }}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn fab small elevation="0" color="transparent">
         <v-icon>mdi-cog</v-icon>
@@ -15,10 +15,13 @@
     </v-toolbar>
 
     <v-container class="px-6">
-      <div class="weather-wrapper">
+      <div class="weather-wrapper" v-dragscroll.x="true">
         <div class="weather-container">
-          <div v-for="i in 3" :key="`weather-${i}`">
-            <WeatherCard :class="i == 3 ? '' : 'mr-8'"></WeatherCard>
+          <div v-for="(weather, i) in weathers" :key="`weather-${i}`">
+            <WeatherCard
+              :class="i == weathers.length - 1 ? '' : 'mr-6'"
+              :weather="weather"
+            ></WeatherCard>
           </div>
         </div>
       </div>
@@ -48,6 +51,7 @@
 
   .weather-wrapper
     overflow-x: scroll
+    overflow-y: hidden
     -ms-overflow-style: none
     scrollbar-width: none
     &::-webkit-scrollbar
@@ -66,12 +70,24 @@
 <script>
 import WeatherCard from "@/components/WeatherCard.vue";
 import NewsCard from "@/components/NewsCard.vue";
+import { dragscroll } from "vue-dragscroll";
 
 export default {
   name: "Dashboard",
   components: {
     WeatherCard,
     NewsCard,
+  },
+
+  directives: {
+    dragscroll,
+  },
+
+  computed: {
+    weathers() {
+      const data = this.$store.getters["getWeathers"];
+      return data.length > 0 ? data : null;
+    },
   },
 
   data: () => ({
