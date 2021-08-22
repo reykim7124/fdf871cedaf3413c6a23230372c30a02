@@ -6,6 +6,7 @@
     flat
     class="pa-2"
     :ripple="false"
+    :to="`/details/${weather.idx}`"
   >
     <div class="d-flex align-center pt-3">
       <div>
@@ -35,12 +36,12 @@
           dark
           class="ml-n1 pa-0 align-self-start"
           color="transparent"
-          @click.stop="toggleTemp"
+          @click.stop.prevent="toggleTemp"
         >
           <div class="v-card__temp v-card--big mr-1">{{ calcTemp }}</div>
           <div class="v-card__temp-symbol mt-n3 mr-1"></div>
-          <div class="d-flex v-card__temp-degree v-card--small">
-            {{ temp == "c" ? "C" : "F" }}
+          <div class="d-flex v-card__temp-degree v-card--small text-uppercase">
+            {{ temp }}
           </div>
         </v-btn>
         <div class="pa-1">
@@ -90,6 +91,8 @@
 </style>
 
 <script>
+import { precipitation, calcWind, calcTemp } from "@/scripts/convert.js";
+
 export default {
   name: "WeatherCard",
   data: () => ({
@@ -101,19 +104,9 @@ export default {
   },
 
   computed: {
-    precipitation() {
-      return this.weather.pop * 100;
-    },
-
-    calcTemp() {
-      return this.temp == "c"
-        ? (this.weather.main.temp - 273.15).toFixed(0)
-        : (((this.weather.main.temp - 273.15) * 9) / 5 + 32).toFixed(0);
-    },
-
-    calcWind() {
-      return (this.weather.wind.speed * 2.237).toFixed(0);
-    },
+    precipitation,
+    calcWind,
+    calcTemp,
   },
 
   methods: {
