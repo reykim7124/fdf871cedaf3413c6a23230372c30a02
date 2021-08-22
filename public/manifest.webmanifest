@@ -1,7 +1,7 @@
 {
   "theme_color": "#3C6FD1",
   "background_color": "#3C6FD1",
-  "display": "fullscreen",
+  "display": "standalone",
   "scope": "/",
   "start_url": "/",
   "name": "Gerimis",
