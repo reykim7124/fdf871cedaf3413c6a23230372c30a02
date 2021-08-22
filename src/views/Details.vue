@@ -160,6 +160,20 @@
             </v-card>
           </v-col>
         </v-row>
+
+        <div class="subheader mb-3 mt-6">Tips</div>
+        <v-card class="details-card details-card__tips mx-1" flat>
+          <v-container>
+            <v-row>
+              <v-col cols="1">
+                <span class="details-card__emoji">✨</span>
+              </v-col>
+              <v-col cols="10" class="d-flex align-center justify-center pr-0"
+                >It's ok to hangout with your friend!</v-col
+              >
+            </v-row>
+          </v-container>
+        </v-card>
       </v-container>
     </template>
   </div>
@@ -173,6 +187,12 @@
   .subheader
     font-weight: 500
     color: $dark
+
+  .details-card__tips
+    height: 64px
+
+    .details-card__emoji
+        font-size: 1.75rem
 
   .details-card
     background: $whiteGradient
