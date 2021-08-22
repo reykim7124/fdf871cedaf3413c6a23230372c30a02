@@ -32,13 +32,14 @@ export default new Vuex.Store({
       }
     },
 
-    async getForecast(context, payload) {
+    async getForecast({ state }, payload) {
       try {
         const { data } = await axios.get(
           `${forecast}lat=${payload.coord.lat}&lon=${payload.coord.lon}`
         );
         payload.uvi = data.daily[0].uvi;
         payload.pop = data.daily[0].pop;
+        payload.idx = state.weathers.length;
         return payload;
       } catch (error) {
         //
