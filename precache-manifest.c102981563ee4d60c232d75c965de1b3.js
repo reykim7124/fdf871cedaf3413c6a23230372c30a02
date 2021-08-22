@@ -40,8 +40,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/gerimis/js/chunk-vendors.f354acbe.js"
   },
   {
-    "revision": "fbb9734f9db4c82e8bce56f7a4628307",
+    "revision": "504c42746a6d2a69700cd275881aefa2",
     "url": "/gerimis/manifest.json"
+  },
+  {
+    "revision": "62902ff6622e6d3497420b54e4133e3a",
+    "url": "/gerimis/manifest.webmanifest"
   },
   {
     "revision": "b6216d61c03e6ce0c9aea6ca7808f7ca",
