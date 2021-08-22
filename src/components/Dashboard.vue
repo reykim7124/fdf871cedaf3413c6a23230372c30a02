@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard">
-    <v-toolbar color="transparent" elevation="0">
+    <v-toolbar color="transparent" flat>
       <v-btn fab small elevation="0" color="transparent">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
@@ -80,6 +80,7 @@
 import WeatherCard from "@/components/WeatherCard.vue";
 import NewsCard from "@/components/NewsCard.vue";
 import { dragscroll } from "vue-dragscroll";
+import { getLocation, showPosition } from "@/scripts/location.js";
 
 export default {
   name: "Dashboard",
@@ -115,23 +116,8 @@ export default {
   }),
 
   methods: {
-    showPosition(position) {
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
-      this.$store.dispatch("getWeather", { lat: lat, lon: lon });
-    },
-
-    getLocation() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((data) => {
-          this.showPosition(data);
-        });
-      }
-    },
-  },
-
-  mounted() {
-    this.getLocation();
+    getLocation,
+    showPosition,
   },
 };
 </script>

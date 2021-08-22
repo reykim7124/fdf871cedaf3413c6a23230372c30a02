@@ -23,3 +23,18 @@ body
     .v-card
       border-radius: $borderRadius
 </style>
+
+<script>
+import { getLocation, showPosition } from "@/scripts/location.js";
+
+export default {
+  methods: {
+    getLocation,
+    showPosition,
+  },
+
+  mounted() {
+    this.getLocation();
+  },
+};
+</script>
