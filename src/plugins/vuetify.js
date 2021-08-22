@@ -3,4 +3,15 @@ import Vuetify from "vuetify/lib/framework";
 
 Vue.use(Vuetify);
 
-export default new Vuetify({});
+const vuetify = new Vuetify({
+  theme: {
+    themes: {
+      light: {
+        secondary: "#A098AE",
+      },
+    },
+    light: true,
+  },
+});
+
+export default vuetify;
