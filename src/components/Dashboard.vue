@@ -15,7 +15,7 @@
     </v-toolbar>
 
     <v-container class="px-6">
-      <div class="weather-wrapper">
+      <div class="weather-wrapper" v-dragscroll>
         <div class="weather-container">
           <div v-for="i in 3" :key="`weather-${i}`">
             <WeatherCard :class="i == 3 ? '' : 'mr-8'"></WeatherCard>
@@ -66,12 +66,17 @@
 <script>
 import WeatherCard from "@/components/WeatherCard.vue";
 import NewsCard from "@/components/NewsCard.vue";
+import { dragscroll } from "vue-dragscroll";
 
 export default {
   name: "Dashboard",
   components: {
     WeatherCard,
     NewsCard,
+  },
+
+  directives: {
+    dragscroll,
   },
 
   data: () => ({
