@@ -14,10 +14,10 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/fdf871cedaf3413c6a23230372c30a02/precache-manifest.7f2959540a0a6b4cabb405e33075795a.js"
+  "/fdf871cedaf3413c6a23230372c30a02/precache-manifest.08f671c5ff27a0555b0b0a40dd0c322b.js"
 );
 
-workbox.core.setCacheNameDetails({prefix: "fdf871cedaf3413c6a23230372c30a02"});
+workbox.core.setCacheNameDetails({prefix: "gerimis"});
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
