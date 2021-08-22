@@ -1,0 +1,10 @@
+{
+  "theme_color": "#3C6FD1",
+  "background_color": "#3C6FD1",
+  "display": "fullscreen",
+  "scope": "/",
+  "start_url": "/",
+  "name": "Gerimis",
+  "short_name": "Gerimis",
+  "description": "Dont worry about  the weather we all here"
+}

@@ -1,5 +1,13 @@
 <template>
-  <v-card height="205" max-width="324" min-width="324" flat class="pa-2">
+  <v-card
+    height="205"
+    max-width="324"
+    min-width="324"
+    flat
+    class="pa-2"
+    :ripple="false"
+    :to="`/details/${weather.idx}`"
+  >
     <div class="d-flex align-center pt-3">
       <div>
         <div class="v-card__subheader white--text px-4">
@@ -17,21 +25,24 @@
         class="pa-3"
       ></v-img>
     </div>
-    <v-card-text class="pt-0 px-3 white--text">
+    <v-card-text class="py-0 px-3 white--text">
       <div class="d-flex align-center">
         <v-icon dark left size="16">mdi-map-marker</v-icon>
         {{ weather.name }}
       </div>
-      <div class="py-3 d-flex justify-space-between align-end">
+      <v-card-actions class="py-3 px-0 d-flex justify-space-between align-end">
         <v-btn
           depressed
           dark
           class="ml-n1 pa-0 align-self-start"
           color="transparent"
+          @click.stop.prevent="toggleTemp"
         >
           <div class="v-card__temp v-card--big mr-1">{{ calcTemp }}</div>
           <div class="v-card__temp-symbol mt-n3 mr-1"></div>
-          <div class="d-flex v-card__temp-degree v-card--small">C</div>
+          <div class="d-flex v-card__temp-degree v-card--small text-uppercase">
+            {{ temp }}
+          </div>
         </v-btn>
         <div class="pa-1">
           <v-icon size="16" dark>mdi-weather-hail</v-icon>
@@ -49,7 +60,7 @@
             >{{ calcWind }} mp/h</span
           >
         </div>
-      </div>
+      </v-card-actions>
     </v-card-text>
   </v-card>
 </template>
@@ -80,6 +91,8 @@
 </style>
 
 <script>
+import { precipitation, calcWind, calcTemp } from "@/scripts/convert.js";
+
 export default {
   name: "WeatherCard",
   data: () => ({
@@ -91,18 +104,14 @@ export default {
   },
 
   computed: {
-    precipitation() {
-      return this.weather.pop * 100;
-    },
+    precipitation,
+    calcWind,
+    calcTemp,
+  },
 
-    calcTemp() {
-      return this.temp
-        ? (this.weather.main.temp - 273.15).toFixed(0)
-        : (((this.weather.main.temp - 273.15) * 9) / 5 + 32).toFixed(0);
-    },
-
-    calcWind() {
-      return (this.weather.wind.speed * 2.237).toFixed(0);
+  methods: {
+    toggleTemp() {
+      this.temp = this.temp == "c" ? "f" : "c";
     },
   },
 };

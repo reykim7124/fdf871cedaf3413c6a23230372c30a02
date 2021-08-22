@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard">
-    <v-toolbar color="transparent" elevation="0">
+    <v-toolbar color="transparent" flat>
       <v-btn fab small elevation="0" color="transparent">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
@@ -15,7 +15,11 @@
     </v-toolbar>
 
     <v-container class="px-6">
-      <div class="weather-wrapper" v-dragscroll.x="true">
+      <div
+        class="weather-wrapper"
+        v-dragscroll.x="true"
+        v-if="weathers != null"
+      >
         <div class="weather-container">
           <div v-for="(weather, i) in weathers" :key="`weather-${i}`">
             <WeatherCard
@@ -24,6 +28,11 @@
             ></WeatherCard>
           </div>
         </div>
+      </div>
+      <div v-else class="text-center">
+        <v-btn @click="getLocation" light depressed
+          >Allow Location Permission</v-btn
+        >
       </div>
 
       <div class="subheader mb-3 mt-6">News</div>
@@ -71,6 +80,7 @@
 import WeatherCard from "@/components/WeatherCard.vue";
 import NewsCard from "@/components/NewsCard.vue";
 import { dragscroll } from "vue-dragscroll";
+import { getLocation, showPosition } from "@/scripts/location.js";
 
 export default {
   name: "Dashboard",
@@ -104,5 +114,10 @@ export default {
       },
     ],
   }),
+
+  methods: {
+    getLocation,
+    showPosition,
+  },
 };
 </script>
