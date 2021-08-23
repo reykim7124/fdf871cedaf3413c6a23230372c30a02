@@ -4,8 +4,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/gerimis/404.html"
   },
   {
-    "revision": "2ad5ae59d8bf1982ae65",
-    "url": "/gerimis/css/app.7f80177c.css"
+    "revision": "03befc638ae448b84af1",
+    "url": "/gerimis/css/app.22ce8a14.css"
   },
   {
     "revision": "f16b243904b3d40663af",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/gerimis/css/chunk-bdd6f8b4.69891555.css"
   },
   {
-    "revision": "58e4771dabaace7f4340",
-    "url": "/gerimis/css/chunk-vendors.41efc81e.css"
+    "revision": "939fa3d5d6fcd01d6432",
+    "url": "/gerimis/css/chunk-vendors.58c4cc37.css"
   },
   {
     "revision": "aedd6bb3fdcc8002ec6b2d27c6019129",
@@ -32,12 +32,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/gerimis/img/icon.08a3fd18.png"
   },
   {
-    "revision": "40f30b0299b93cfba9f5cd0891bb390f",
+    "revision": "bf0f17737ab2e5ef0e3c3aca4b79053a",
     "url": "/gerimis/index.html"
   },
   {
-    "revision": "2ad5ae59d8bf1982ae65",
-    "url": "/gerimis/js/app.420f46db.js"
+    "revision": "03befc638ae448b84af1",
+    "url": "/gerimis/js/app.bef576eb.js"
   },
   {
     "revision": "f16b243904b3d40663af",
@@ -48,7 +48,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/gerimis/js/chunk-bdd6f8b4.2b63cc93.js"
   },
   {
-    "revision": "58e4771dabaace7f4340",
+    "revision": "939fa3d5d6fcd01d6432",
     "url": "/gerimis/js/chunk-vendors.59e0d97d.js"
   },
   {
