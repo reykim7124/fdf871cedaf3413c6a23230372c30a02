@@ -1,15 +1,17 @@
 <template>
   <div class="dashboard">
     <v-toolbar color="transparent" flat>
-      <v-btn fab small elevation="0" color="transparent">
+      <v-btn fab small depressed color="transparent" @click="toggleSidebar">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
-      <v-toolbar-title class="toolbar__title" v-if="weathers != null">{{
-        weathers[0].name
-      }}</v-toolbar-title>
+      <v-toolbar-title
+        class="toolbar__title text-capitalize"
+        v-if="current != null"
+        >{{ current.name }}</v-toolbar-title
+      >
       <v-spacer></v-spacer>
-      <v-btn fab small elevation="0" color="transparent">
+      <v-btn fab small depressed color="transparent">
         <v-icon>mdi-cog</v-icon>
       </v-btn>
     </v-toolbar>
@@ -18,9 +20,12 @@
       <div
         class="weather-wrapper"
         v-dragscroll.x="true"
-        v-if="weathers != null"
+        v-if="current != null || weathers.length > 0"
       >
         <div class="weather-container">
+          <div v-if="current != null">
+            <WeatherCard class="mr-6" :weather="current"></WeatherCard>
+          </div>
           <div v-for="(weather, i) in weathers" :key="`weather-${i}`">
             <WeatherCard
               :class="i == weathers.length - 1 ? '' : 'mr-6'"
@@ -48,9 +53,25 @@
 </template>
 
 <style lang="sass" scoped>
+.dashboard.dashboard-slide
+  background: $whiteGradient
+  position: absolute
+  margin-left: 75%
+  width: 100%
+  border-radius: 20px
+  transition: 0.2s
+  box-shadow: -1px 0px 10px 0px rgba(0, 0, 0, 0.5)
+  padding-top: 30px
+
 .dashboard
   background: $gauss
   min-height: 100vh
+  width: 100%
+  border-radius: 0px
+  transition: 0.2s
+  padding-top: 0px
+  box-shadow: none
+  position: static
   *, .v-btn
     color: $dark
 
@@ -60,7 +81,6 @@
 
   .weather-wrapper
     overflow-x: scroll
-    overflow-y: hidden
     -ms-overflow-style: none
     scrollbar-width: none
     &::-webkit-scrollbar
@@ -94,9 +114,12 @@ export default {
   },
 
   computed: {
+    current() {
+      return this.$store.getters["getCurrent"];
+    },
+
     weathers() {
-      const data = this.$store.getters["getWeathers"];
-      return data.length > 0 ? data : null;
+      return this.$store.getters["getWeathers"];
     },
   },
 
@@ -118,6 +141,11 @@ export default {
   methods: {
     getLocation,
     showPosition,
+
+    toggleSidebar() {
+      document.querySelector(".dashboard").classList.toggle("dashboard-slide");
+      this.$emit("toggleSidebar");
+    },
   },
 };
 </script>

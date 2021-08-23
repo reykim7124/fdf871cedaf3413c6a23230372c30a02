@@ -19,6 +19,7 @@ body
 
   .main
     background-color: #e5e5e5
+    overflow: clip
 
     .v-card
       border-radius: $borderRadius

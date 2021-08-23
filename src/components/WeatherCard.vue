@@ -11,7 +11,11 @@
     <div class="d-flex align-center pt-3">
       <div>
         <div class="v-card__subheader white--text px-4">
-          Chance of rain {{ precipitation }}%
+          {{
+            `Chance of rain ${
+              precipitation ? precipitation : "No Precipitation"
+            }%`
+          }}
         </div>
         <v-card-title class="text-capitalize white--text pt-0 v-card--big">{{
           weather.weather[0].description

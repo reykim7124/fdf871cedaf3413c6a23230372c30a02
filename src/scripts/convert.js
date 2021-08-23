@@ -1,5 +1,5 @@
 function precipitation() {
-  return this.weather.pop * 100;
+  return (this.weather.pop * 100).toFixed(0);
 }
 
 function calcTemp() {

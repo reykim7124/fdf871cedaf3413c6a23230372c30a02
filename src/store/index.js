@@ -10,9 +10,14 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    current: null,
     weathers: [],
   },
   mutations: {
+    setCurrent: (state, payload) => {
+      state.current = payload;
+    },
+
     setWeathers: (state, payload) => {
       state.weathers.push(payload);
     },
@@ -25,7 +30,11 @@ export default new Vuex.Store({
             `${weather}lat=${payload.lat}&lon=${payload.lon}`
           );
           const data2 = await dispatch("getForecast", data);
-          commit("setWeathers", data2);
+          if (payload.type === "current") {
+            commit("setCurrent", data2);
+          } else {
+            commit("setWeathers", data2);
+          }
         }
       } catch (error) {
         //
@@ -47,6 +56,7 @@ export default new Vuex.Store({
     },
   },
   getters: {
+    getCurrent: (state) => state.current,
     getWeathers: (state) => state.weathers,
   },
   modules: {},
