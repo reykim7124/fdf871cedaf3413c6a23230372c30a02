@@ -29,7 +29,10 @@ export default new Vuex.Store({
           const { data } = await axios.get(
             `${weather}lat=${payload.lat}&lon=${payload.lon}`
           );
-          const data2 = await dispatch("getForecast", data);
+          const data2 = await dispatch("getForecast", {
+            data: data,
+            type: payload.type,
+          });
           if (payload.type === "current") {
             commit("setCurrent", data2);
           } else {
@@ -44,12 +47,16 @@ export default new Vuex.Store({
     async getForecast({ state }, payload) {
       try {
         const { data } = await axios.get(
-          `${forecast}lat=${payload.coord.lat}&lon=${payload.coord.lon}`
+          `${forecast}lat=${payload.data.coord.lat}&lon=${payload.data.coord.lon}`
         );
-        payload.uvi = data.daily[0].uvi;
-        payload.pop = data.daily[0].pop;
-        payload.idx = state.weathers.length;
-        return payload;
+        payload.data.uvi = data.daily[0].uvi;
+        payload.data.pop = data.daily[0].pop;
+        if (payload.type != "current") {
+          payload.data.idx = state.weathers.length + 1;
+        } else {
+          payload.data.idx = 0;
+        }
+        return payload.data;
       } catch (error) {
         //
       }

@@ -276,7 +276,14 @@ export default {
   name: "weather",
   computed: {
     weather() {
-      return this.$store.getters["getCurrent"];
+      const current = this.$store.getters["getCurrent"];
+      const weathers = this.$store.getters["getWeathers"];
+      const id = this.$route.params.id;
+      let data = weathers.find((e) => e.idx == id);
+      if (data == undefined || data == null) {
+        data = current;
+      }
+      return data;
     },
 
     now() {
