@@ -22,7 +22,12 @@
       </v-btn>
     </div>
     <div class="sidebar__list d-flex flex-column">
-      <v-btn class="px-2 my-2 text-capitalize" text width="fit-content">
+      <v-btn
+        class="px-2 my-2 text-capitalize"
+        text
+        width="fit-content"
+        to="/search"
+      >
         <div class="sidebar__add-location d-flex align-center">
           <v-icon size="23" color="#FBF99E">mdi-map-marker-plus</v-icon>
           <span class="sidebar--text ml-2">Add Location</span>
