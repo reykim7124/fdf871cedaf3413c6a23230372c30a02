@@ -56,7 +56,7 @@
 .dashboard.dashboard-slide
   background: $whiteGradient
   position: absolute
-  margin-left: 75%
+  margin-left: 70%
   width: 100%
   border-radius: 20px
   transition: 0.2s

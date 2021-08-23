@@ -22,14 +22,24 @@
       </v-btn>
     </div>
     <div class="sidebar__list d-flex flex-column">
-      <v-btn class="px-2 my-2 text-capitalize" text width="fit-content">
+      <v-btn
+        class="px-2 my-2 text-capitalize"
+        text
+        width="fit-content"
+        to="/search"
+      >
         <div class="sidebar__add-location d-flex align-center">
           <v-icon size="23" color="#FBF99E">mdi-map-marker-plus</v-icon>
           <span class="sidebar--text ml-2">Add Location</span>
         </div>
       </v-btn>
       <div v-for="(weather, i) in weathers" :key="i">
-        <v-btn text width="fit-content" class="px-2 my-2 text-capitalize">
+        <v-btn
+          text
+          width="fit-content"
+          class="px-2 my-2 text-capitalize"
+          :to="`/details/${weather.idx}`"
+        >
           <v-icon size="25" class="sidebar--white-gradient ml-n1"
             >mdi-map-marker</v-icon
           >
