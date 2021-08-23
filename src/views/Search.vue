@@ -223,6 +223,7 @@ export default {
 
     updateLatLng(value) {
       this.marker = latLng(value);
+      this.showWeather({ lat: value.lat, lng: value.lng });
     },
 
     fixIcon() {
@@ -262,7 +263,6 @@ export default {
       const latlng = { lat: e.y, lng: e.x };
       this.updateLatLng(latlng);
       this.center = latLng(latlng);
-      this.showWeather(latlng);
     },
 
     async showWeather(e) {
