@@ -1,5 +1,3 @@
-# fdf871cedaf3413c6a23230372c30a02
-
 ## Project setup
 ```
 npm install
