@@ -32,9 +32,9 @@
             class="mx-5 mb-n3"
             placeholder="Enter Cities"
             prepend-inner-icon="mdi-magnify"
-            color="#3C6FD1"
+            color="#363B64"
             v-model="query"
-            @input.native="getLocations"
+            @input.native="searchCities"
             v-on="on"
           ></v-text-field>
         </template>
@@ -71,6 +71,57 @@
         ></l-marker>
       </l-map>
     </div>
+
+    <v-card class="weather py-4 px-6" v-if="weather != null">
+      <div class="d-flex">
+        <div class="d-flex align-center">
+          <v-icon size="25" class="weather__icon">mdi-map-marker</v-icon>
+          <div class="ml-2">
+            <div class="weather__title">{{ weather.name }}</div>
+            <div class="weather__subheader">Indonesia</div>
+          </div>
+        </div>
+        <v-spacer></v-spacer>
+        <div class="d-flex align-center">
+          <v-img
+            :src="`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`"
+            contain
+            width="75"
+            height="72"
+          ></v-img>
+          <div class="d-flex" @click="toggleTemp">
+            <div class="weather__temp">{{ calcTemp }}</div>
+            <div class="weather__temp-symbol"></div>
+          </div>
+        </div>
+      </div>
+      <v-divider></v-divider>
+      <v-container class="px-0 py-3">
+        <v-row no-gutters>
+          <v-col cols="9">
+            <div class="weather__subheader">Longitude and latitude</div>
+            <div class="weather__details mt-2">
+              {{ weather.coord.lon }}, {{ weather.coord.lat }}
+            </div>
+          </v-col>
+          <v-col cols="3">
+            <div class="weather__subheader">Wind</div>
+            <div class="weather__details mt-2">{{ calcWind }} mp/h</div>
+          </v-col>
+        </v-row>
+      </v-container>
+      <v-divider></v-divider>
+      <v-card-actions>
+        <v-btn
+          class="weather__btn text-capitalize white--text my-2"
+          rounded
+          depressed
+          block
+          @click="setWeather"
+          >Change Location</v-btn
+        >
+      </v-card-actions>
+    </v-card>
   </div>
 </template>
 
@@ -78,6 +129,34 @@
 .search
   min-height: 100vh
   max-height: 100vh
+  position: relative
+  *, .weather__icon
+    color: $dark
+  .weather
+    position: absolute
+    bottom: 0
+    width: 100%
+    border-bottom-left-radius: 0
+    border-bottom-right-radius: 0
+    .weather__title
+      font-weight: 600
+    .weather__temp
+      font-size: 1.188rem
+    .weather__temp-symbol
+      border: 1px solid $dark
+      width: 8px
+      height: 8px
+      border-radius: 8px
+      margin-left: 1px
+      margin-top: 5px
+    .weather__subheader
+      color: $secondary
+      font-size: 0.75rem
+    .weather__details
+      font-size: 0.875rem
+      font-weight: 500
+    .weather__btn
+      background: $bLUE
   .search__map-wrapper
     position: relative
     flex-grow: 1
@@ -98,6 +177,7 @@ import "leaflet/dist/leaflet.css";
 import { latLng, Icon } from "leaflet";
 import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 import { OpenStreetMapProvider } from "leaflet-geosearch";
+import { calcWind, calcTemp } from "@/scripts/convert.js";
 
 let time = null;
 
@@ -112,6 +192,8 @@ export default {
   data: () => ({
     query: "",
     cities: [],
+    temp: "c",
+    weather: null,
     url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     attribution:
       '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -121,7 +203,16 @@ export default {
     marker: latLng(-6.1753942, 106.827183),
   }),
 
+  computed: {
+    calcWind,
+    calcTemp,
+  },
+
   methods: {
+    toggleTemp() {
+      this.temp = this.temp === "c" ? "f" : "c";
+    },
+
     zoomUpdate(zoom) {
       this.currentZoom = zoom;
     },
@@ -143,7 +234,7 @@ export default {
       });
     },
 
-    getLocations() {
+    searchCities() {
       clearTimeout(time);
       const provider = new OpenStreetMapProvider({
         params: {
@@ -171,6 +262,21 @@ export default {
       const latlng = { lat: e.y, lng: e.x };
       this.updateLatLng(latlng);
       this.center = latLng(latlng);
+      this.showWeather(latlng);
+    },
+
+    async showWeather(e) {
+      const data = await this.$store.dispatch("getWeather", {
+        lat: e.lat,
+        lon: e.lng,
+        type: "get",
+      });
+      this.weather = data;
+    },
+
+    setWeather() {
+      this.$store.dispatch("setWeather", this.weather);
+      this.$router.push("/");
     },
   },
 

@@ -34,7 +34,12 @@
         </div>
       </v-btn>
       <div v-for="(weather, i) in weathers" :key="i">
-        <v-btn text width="fit-content" class="px-2 my-2 text-capitalize">
+        <v-btn
+          text
+          width="fit-content"
+          class="px-2 my-2 text-capitalize"
+          :to="`/details/${weather.idx}`"
+        >
           <v-icon size="25" class="sidebar--white-gradient ml-n1"
             >mdi-map-marker</v-icon
           >

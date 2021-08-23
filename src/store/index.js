@@ -19,7 +19,8 @@ export default new Vuex.Store({
     },
 
     setWeathers: (state, payload) => {
-      state.weathers.push(payload);
+      state.weathers.push(state.current);
+      state.current = payload;
     },
   },
   actions: {
@@ -35,8 +36,12 @@ export default new Vuex.Store({
           });
           if (payload.type === "current") {
             commit("setCurrent", data2);
-          } else {
-            commit("setWeathers", data2);
+          }
+          // else if (payload.type === "new") {
+          //   commit("setWeathers", data2);
+          // }
+          if (payload.type === "get") {
+            return data2;
           }
         }
       } catch (error) {
@@ -60,6 +65,10 @@ export default new Vuex.Store({
       } catch (error) {
         //
       }
+    },
+
+    setWeather({ commit }, payload) {
+      commit("setWeathers", payload);
     },
   },
   getters: {
