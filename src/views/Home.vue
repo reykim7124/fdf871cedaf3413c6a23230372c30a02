@@ -17,8 +17,13 @@ export default {
   components: { Dashboard, Sidebar, SplashScreen },
   data: () => ({
     open: false,
-    splash: true,
   }),
+
+  computed: {
+    splash() {
+      return this.$store.getters["getSplash"];
+    },
+  },
 
   methods: {
     toggleSidebar() {
@@ -33,7 +38,7 @@ export default {
   mounted() {
     setTimeout(
       function () {
-        this.splash = false;
+        this.$store.dispatch("setSplash");
       }.bind(this),
       3000
     );
