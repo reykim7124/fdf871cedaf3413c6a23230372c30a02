@@ -1,6 +1,7 @@
 <template>
   <v-app class="app">
     <v-main class="main">
+      <SplashScreen v-if="splash"></SplashScreen>
       <router-view />
     </v-main>
   </v-app>
@@ -27,6 +28,7 @@ body
 
 <script>
 import { getLocation, showPosition } from "@/scripts/location.js";
+import SplashScreen from "@/components/SplashScreen.vue";
 
 export default {
   methods: {
@@ -34,8 +36,22 @@ export default {
     showPosition,
   },
 
+  components: { SplashScreen },
+
+  computed: {
+    splash() {
+      return this.$store.getters["getSplash"];
+    },
+  },
+
   mounted() {
     this.getLocation();
+    setTimeout(
+      function () {
+        this.$store.dispatch("setSplash");
+      }.bind(this),
+      3000
+    );
   },
 };
 </script>
