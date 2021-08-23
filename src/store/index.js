@@ -12,8 +12,13 @@ export default new Vuex.Store({
   state: {
     current: null,
     weathers: [],
+    splash: true,
   },
   mutations: {
+    setSplash: (state) => {
+      state.splash = false;
+    },
+
     setCurrent: (state, payload) => {
       state.current = payload;
     },
@@ -70,10 +75,15 @@ export default new Vuex.Store({
     setWeather({ commit }, payload) {
       commit("setWeathers", payload);
     },
+
+    setSplash({ commit }) {
+      commit("setSplash");
+    },
   },
   getters: {
     getCurrent: (state) => state.current,
     getWeathers: (state) => state.weathers,
+    getSplash: (state) => state.splash,
   },
   modules: {},
 });
