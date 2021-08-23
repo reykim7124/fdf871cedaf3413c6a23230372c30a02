@@ -3,7 +3,7 @@
     <template v-if="weather != null">
       <v-card height="441px" dark flat class="v-card--big">
         <v-toolbar color="transparent" flat>
-          <v-btn fab small elevation="0" color="transparent" to="/">
+          <v-btn fab small depressed color="transparent" to="/">
             <v-icon size="30">mdi-chevron-left</v-icon>
           </v-btn>
           <v-spacer></v-spacer>
@@ -11,7 +11,7 @@
             weather.name
           }}</v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn fab small elevation="0" color="transparent">
+          <v-btn fab small depressed color="transparent">
             <v-icon>mdi-dots-horizontal</v-icon>
           </v-btn>
         </v-toolbar>
