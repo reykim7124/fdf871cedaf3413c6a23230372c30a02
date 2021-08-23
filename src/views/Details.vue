@@ -276,8 +276,7 @@ export default {
   name: "weather",
   computed: {
     weather() {
-      const data = this.$store.getters["getWeathers"][0];
-      return data != null ? data : null;
+      return this.$store.getters["getCurrent"];
     },
 
     now() {

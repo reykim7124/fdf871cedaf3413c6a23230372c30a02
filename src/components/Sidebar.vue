@@ -1,47 +1,44 @@
 <template>
   <div class="sidebar pt-6 pl-3 d-flex flex-column justify-space-between">
-    <template v-if="weathers != null">
-      <div class="mb-12">
-        <div class="sidebar__subheader sidebar--white-gradient ml-2">
-          Current location
-        </div>
-        <v-btn
-          class="mt-3 px-2 text-capitalize"
-          text
-          :to="`/details/${weathers[0].idx}`"
+    <div class="mb-12">
+      <div class="sidebar__subheader sidebar--white-gradient ml-2">
+        Current location
+      </div>
+      <v-btn
+        v-if="current != null"
+        class="mt-3 px-2 text-capitalize"
+        text
+        :to="`/details/${current.idx}`"
+      >
+        <v-icon size="25" class="sidebar--white-gradient ml-n1"
+          >mdi-map-marker</v-icon
         >
+        <span class="sidebar__title sidebar--text ml-2">{{
+          current.name
+        }}</span>
+      </v-btn>
+      <v-btn v-else class="mt-3 px-2 text-capitalize" text @click="getLocation">
+        <span class="sidebar__title sidebar--text">Allow Location</span>
+      </v-btn>
+    </div>
+    <div class="sidebar__list d-flex flex-column">
+      <v-btn class="px-2 my-2 text-capitalize" text width="fit-content">
+        <div class="sidebar__add-location d-flex align-center">
+          <v-icon size="23" color="#FBF99E">mdi-map-marker-plus</v-icon>
+          <span class="sidebar--text ml-2">Add Location</span>
+        </div>
+      </v-btn>
+      <div v-for="(weather, i) in weathers" :key="i">
+        <v-btn text width="fit-content" class="px-2 my-2 text-capitalize">
           <v-icon size="25" class="sidebar--white-gradient ml-n1"
             >mdi-map-marker</v-icon
           >
           <span class="sidebar__title sidebar--text ml-2">{{
-            weathers[0].name
+            weather.name
           }}</span>
         </v-btn>
       </div>
-      <div class="sidebar__list d-flex flex-column">
-        <v-btn class="px-2 my-2 text-capitalize" text width="fit-content">
-          <div class="sidebar__add-location d-flex align-center">
-            <v-icon size="23" color="#FBF99E">mdi-map-marker-plus</v-icon>
-            <span class="sidebar--text ml-2">Add Location</span>
-          </div>
-        </v-btn>
-        <div v-for="(weather, i) in weathers" :key="i">
-          <v-btn
-            v-if="weather.idx != 0"
-            text
-            width="fit-content"
-            class="px-2 my-2 text-capitalize"
-          >
-            <v-icon size="25" class="sidebar--white-gradient ml-n1"
-              >mdi-map-marker</v-icon
-            >
-            <span class="sidebar__title sidebar--text ml-2">{{
-              weather.name
-            }}</span>
-          </v-btn>
-        </div>
-      </div>
-    </template>
+    </div>
     <div class="sidebar__footer mt-12 d-flex flex-column">
       <v-btn
         text
@@ -104,13 +101,23 @@
 </style>
 
 <script>
+import { getLocation, showPosition } from "@/scripts/location.js";
+
 export default {
   name: "Sidebar",
   computed: {
-    weathers() {
-      const data = this.$store.getters["getWeathers"];
-      return data.length > 0 ? data : null;
+    current() {
+      return this.$store.getters["getCurrent"];
     },
+
+    weathers() {
+      return this.$store.getters["getWeathers"];
+    },
+  },
+
+  methods: {
+    getLocation,
+    showPosition,
   },
 };
 </script>

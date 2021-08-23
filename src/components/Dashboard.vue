@@ -7,8 +7,8 @@
       <v-spacer></v-spacer>
       <v-toolbar-title
         class="toolbar__title text-capitalize"
-        v-if="weathers != null"
-        >{{ weathers[0].name }}</v-toolbar-title
+        v-if="current != null"
+        >{{ current.name }}</v-toolbar-title
       >
       <v-spacer></v-spacer>
       <v-btn fab small depressed color="transparent">
@@ -20,9 +20,12 @@
       <div
         class="weather-wrapper"
         v-dragscroll.x="true"
-        v-if="weathers != null"
+        v-if="current != null || weathers.length > 0"
       >
         <div class="weather-container">
+          <div v-if="current != null">
+            <WeatherCard class="mr-6" :weather="current"></WeatherCard>
+          </div>
           <div v-for="(weather, i) in weathers" :key="`weather-${i}`">
             <WeatherCard
               :class="i == weathers.length - 1 ? '' : 'mr-6'"
@@ -111,9 +114,12 @@ export default {
   },
 
   computed: {
+    current() {
+      return this.$store.getters["getCurrent"];
+    },
+
     weathers() {
-      const data = this.$store.getters["getWeathers"];
-      return data.length > 0 ? data : null;
+      return this.$store.getters["getWeathers"];
     },
   },
 
