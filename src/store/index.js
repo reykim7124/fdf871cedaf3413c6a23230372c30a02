@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
 
-const appid = "fdf871cedaf3413c6a23230372c30a02";
+const appid = "b35ea5e07fd8768c27e25fd495fe3909";
 const weather = `https://api.openweathermap.org/data/2.5/weather?appid=${appid}&`;
 const forecast = `https://api.openweathermap.org/data/2.5/onecall?appid=${appid}&exclude=minutely,hourly,alerts,current&`;
 
