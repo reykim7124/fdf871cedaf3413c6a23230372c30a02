@@ -7,7 +7,7 @@ function showPosition(position) {
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((data) => {
-      this.showPosition(data);
+      showPosition(data);
     });
   }
 }
