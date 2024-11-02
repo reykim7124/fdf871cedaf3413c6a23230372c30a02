@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/gerimis/404.html"
   },
   {
-    "revision": "dde14dc2dfe7caae6c70",
+    "revision": "dfa4d8801617678805ca",
     "url": "/gerimis/css/app.22ce8a14.css"
   },
   {
@@ -32,12 +32,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/gerimis/img/icon.08a3fd18.png"
   },
   {
-    "revision": "41703985c5f2c55064c85fcef4873721",
+    "revision": "965d7266dd744e6e9c8eba8e9c77585d",
     "url": "/gerimis/index.html"
   },
   {
-    "revision": "dde14dc2dfe7caae6c70",
-    "url": "/gerimis/js/app.e40ab164.js"
+    "revision": "dfa4d8801617678805ca",
+    "url": "/gerimis/js/app.b1126101.js"
   },
   {
     "revision": "fa14bca0eb9e82f09ad9",
