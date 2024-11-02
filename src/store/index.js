@@ -4,7 +4,7 @@ import axios from "axios";
 
 const appid = "b35ea5e07fd8768c27e25fd495fe3909";
 const weather = `https://api.openweathermap.org/data/2.5/weather?appid=${appid}&`;
-const forecast = `https://api.openweathermap.org/data/2.5/onecall?appid=${appid}&exclude=minutely,hourly,alerts,current&`;
+const forecast = `https://api.openweathermap.org/data/2.5/forecast?appid=${appid}&`;
 
 Vue.use(Vuex);
 
