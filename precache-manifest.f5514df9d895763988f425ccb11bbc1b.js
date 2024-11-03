@@ -4,12 +4,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/gerimis/404.html"
   },
   {
-    "revision": "72f5eb0cfefa1ac74d76",
-    "url": "/gerimis/css/app.22ce8a14.css"
+    "revision": "422de25b10d9c5aee78f",
+    "url": "/gerimis/css/app.562503f9.css"
   },
   {
-    "revision": "fa14bca0eb9e82f09ad9",
-    "url": "/gerimis/css/chunk-276fb5ac.b5f9e29a.css"
+    "revision": "66c6bcdfd919748fe24f",
+    "url": "/gerimis/css/chunk-8544e682.82b40498.css"
   },
   {
     "revision": "43e9ad63113e4c82b86a",
@@ -32,16 +32,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/gerimis/img/icon.08a3fd18.png"
   },
   {
-    "revision": "90f30e8f55ef1c22540562a406f61a2c",
+    "revision": "9af1d793dd8806a08235508e068cac2e",
     "url": "/gerimis/index.html"
   },
   {
-    "revision": "72f5eb0cfefa1ac74d76",
-    "url": "/gerimis/js/app.c351ee06.js"
+    "revision": "422de25b10d9c5aee78f",
+    "url": "/gerimis/js/app.b12aefda.js"
   },
   {
-    "revision": "fa14bca0eb9e82f09ad9",
-    "url": "/gerimis/js/chunk-276fb5ac.d0749809.js"
+    "revision": "66c6bcdfd919748fe24f",
+    "url": "/gerimis/js/chunk-8544e682.b77d6ed8.js"
   },
   {
     "revision": "43e9ad63113e4c82b86a",

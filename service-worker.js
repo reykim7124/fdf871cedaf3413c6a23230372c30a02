@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/gerimis/precache-manifest.f50c751c849b1b8006dc351c58f009fd.js"
+  "/gerimis/precache-manifest.f5514df9d895763988f425ccb11bbc1b.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "gerimis"});
