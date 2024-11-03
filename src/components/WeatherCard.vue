@@ -1,24 +1,21 @@
 <template>
   <v-card
     height="205"
-    max-width="324"
-    min-width="324"
+    max-width="350"
+    min-width="350"
     flat
     class="pa-2"
     :ripple="false"
-    :to="`/details/${weather.idx}`"
+    :to="`/details/${weather.id}`"
   >
     <div class="d-flex align-center pt-3">
       <div>
-        <div class="v-card__subheader white--text px-4">
-          {{
-            `Chance of rain ${
-              precipitation ? precipitation : "No Precipitation"
-            }%`
-          }}
+        <div class="v-card__subheader white--text px-4 mb-2">
+          Precipitation:
+          {{ precipitation ? `${precipitation}` : "0" }} mm/h
         </div>
         <v-card-title class="text-capitalize white--text pt-0 v-card--big">{{
-          weather.weather[0].description
+          weather.weather[0].main
         }}</v-card-title>
       </div>
       <v-img
@@ -54,10 +51,10 @@
             >{{ weather.main.humidity }}%</span
           >
         </div>
-        <div class="pa-1">
-          <v-icon size="16" dark>mdi-weather-sunny</v-icon>
-          <span class="ml-1 v-card--small v-card__stat">{{ weather.uvi }}</span>
-        </div>
+        <!-- <div class="pa-1"> -->
+        <!--   <v-icon size="16" dark>mdi-weather-sunny</v-icon> -->
+        <!--   <span class="ml-1 v-card--small v-card__stat">{{ weather.uvi }}</span> -->
+        <!-- </div> -->
         <div class="pa-1">
           <v-icon size="16" dark>mdi-weather-windy</v-icon>
           <span class="ml-1 v-card--small v-card__stat"

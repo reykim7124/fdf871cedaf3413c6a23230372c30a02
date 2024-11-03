@@ -1,5 +1,8 @@
 function precipitation() {
-  return (this.weather.pop * 100).toFixed(0);
+  if (!this.weather?.rain) {
+    return undefined;
+  }
+  return this.weather.rain["1h"];
 }
 
 function calcTemp() {

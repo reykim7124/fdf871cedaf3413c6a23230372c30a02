@@ -8,7 +8,7 @@
         v-if="current != null"
         class="mt-3 px-2 text-capitalize"
         text
-        :to="`/details/${current.idx}`"
+        :to="`/details/${current.id}`"
       >
         <v-icon size="25" class="sidebar--white-gradient ml-n1"
           >mdi-map-marker</v-icon
@@ -38,7 +38,7 @@
           text
           width="fit-content"
           class="px-2 my-2 text-capitalize"
-          :to="`/details/${weather.idx}`"
+          :to="`/details/${weather.id}`"
         >
           <v-icon size="25" class="sidebar--white-gradient ml-n1"
             >mdi-map-marker</v-icon

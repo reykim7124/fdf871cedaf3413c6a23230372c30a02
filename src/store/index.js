@@ -4,7 +4,6 @@ import axios from "axios";
 
 const appid = "b35ea5e07fd8768c27e25fd495fe3909";
 const weather = `https://api.openweathermap.org/data/2.5/weather?appid=${appid}&`;
-const forecast = `https://api.openweathermap.org/data/2.5/forecast?appid=${appid}&`;
 
 Vue.use(Vuex);
 
@@ -39,12 +38,11 @@ export default new Vuex.Store({
             data: data,
             type: payload.type,
           });
+
           if (payload.type === "current") {
-            commit("setCurrent", data2);
+            commit("setCurrent", data);
           }
-          // else if (payload.type === "new") {
-          //   commit("setWeathers", data2);
-          // }
+
           if (payload.type === "get") {
             return data2;
           }
@@ -56,16 +54,12 @@ export default new Vuex.Store({
 
     async getForecast({ state }, payload) {
       try {
-        const { data } = await axios.get(
-          `${forecast}lat=${payload.data.coord.lat}&lon=${payload.data.coord.lon}`
-        );
-        payload.data.uvi = data.daily[0].uvi;
-        payload.data.pop = data.daily[0].pop;
-        if (payload.type != "current") {
-          payload.data.idx = state.weathers.length + 1;
+        if (payload.type !== "current") {
+          payload.data.id = state.weathers.length + 1;
         } else {
-          payload.data.idx = 0;
+          payload.data.id = 0;
         }
+
         return payload.data;
       } catch (error) {
         //

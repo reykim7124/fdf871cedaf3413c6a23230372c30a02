@@ -76,6 +76,32 @@
                 <v-row no-gutters>
                   <v-col cols="3">
                     <v-icon size="42" class="details-card__icon"
+                      >mdi-cloud-percent-outline</v-icon
+                    >
+                  </v-col>
+                  <v-col cols="9" class="pl-4 pr-0">
+                    <div class="d-flex">
+                      <div class="details-card--title">
+                        {{ precipitation }}
+                      </div>
+                      <div class="details-card__temp-symbol"></div>
+                    </div>
+                    <div class="details-card--secondary">Precipitation</div>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card>
+          </v-col>
+          <v-col cols="6">
+            <v-card
+              class="details-card d-flex align-center ma-1"
+              height="76px"
+              flat
+            >
+              <v-container>
+                <v-row no-gutters>
+                  <v-col cols="3">
+                    <v-icon size="42" class="details-card__icon"
                       >mdi-thermometer</v-icon
                     >
                   </v-col>
@@ -110,27 +136,6 @@
                   <v-col cols="9" class="pl-4 pr-0">
                     <div class="details-card--title">{{ calcWind }} mp/h</div>
                     <div class="details-card--secondary">Pressure</div>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card>
-          </v-col>
-          <v-col cols="6">
-            <v-card
-              class="details-card d-flex align-center ma-1"
-              height="76px"
-              flat
-            >
-              <v-container>
-                <v-row no-gutters>
-                  <v-col cols="3">
-                    <v-icon size="42" class="details-card__icon"
-                      >mdi-weather-sunny</v-icon
-                    >
-                  </v-col>
-                  <v-col cols="9" class="pl-4 pr-0">
-                    <div class="details-card--title">{{ weather.uvi }}</div>
-                    <div class="details-card--secondary">UV Index</div>
                   </v-col>
                 </v-row>
               </v-container>
@@ -278,9 +283,12 @@ export default {
     weather() {
       const current = this.$store.getters["getCurrent"];
       const weathers = this.$store.getters["getWeathers"];
-      const id = this.$route.params.id;
-      let data = weathers.find((e) => e.idx == id);
-      if (data == undefined || data == null) {
+      const id = parseInt(this.$route.params.id);
+      let data = weathers.find((e) => {
+        return e.id === id;
+      });
+
+      if (data === undefined || data === null) {
         data = current;
       }
       return data;
